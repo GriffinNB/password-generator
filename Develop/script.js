@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// creates our random function
 function randomInt(min, max) {
   if (!max) {
     max = min;
@@ -13,12 +14,13 @@ function randomInt(min, max) {
 function getRandomItem(list) {
   return list[randomInt(list.length)];
 }
-
+// the bulk of how the password generator works
 function generatePassword() {
   var userInput = window.prompt("How many characters do you want your password to be?");
 
   var passwordLength = parseInt(userInput);
 
+  // double checks to make sure the user knows their input was invalid
   if (isNaN(passwordLength)) {
     window.alert("That's not a number");
     return;
@@ -35,6 +37,7 @@ function generatePassword() {
   var userWantsLowercase = window.confirm("Would you like to include lowercase letters in your password?");
   var userWantsUppercase = window.confirm("Would you like to include uppercase letters in your password?");
 
+  // creating arrays for the user to get options from
   var numberList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var symbolList = ["!", "@", "#", "$", "%", "^", "&", "*"];
   var lowercaseList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -46,7 +49,7 @@ function generatePassword() {
     uppercaseList[i] = lowercaseList[i].toUpperCase();
   }
 
-
+// pushes the selected arrays into the output for the generator
   if (userWantsNumbers === true) {
     optionsCart.push(numberList);
   }
@@ -66,13 +69,13 @@ function generatePassword() {
   }
 
   var generatedPassword = "";
-
+// uses our random function to select characters for the array according the requested length
   for (var i = 0; i < passwordLength; i++) {
     var randomList = getRandomItem(optionsCart);
     var randomChar = getRandomItem(randomList);
     generatedPassword += randomChar;
   }
-
+  // pushes our result out of the function for other pieces of code to use it
   return generatedPassword;
 
 

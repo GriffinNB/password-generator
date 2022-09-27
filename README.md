@@ -1,4 +1,5 @@
-# 03 JavaScript: Password Generator
+# Password Generator 
+Module 3 Challege for MSU's Coding Bootcamp
 
 ## Your Task
 
