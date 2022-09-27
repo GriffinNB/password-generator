@@ -1,6 +1,19 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+function randomInt(min, max) {
+  if (!max) {
+    max = min;
+    min = 0;
+  }
+  var rand = Math.random();
+  return Math.floor(min * (1 - rand) + rand * max);
+}
+
+function getRandomItem(list) {
+  return list[randomInt(list.length)];
+}
+
 function generatePassword() {
   var userInput = window.prompt("How many characters do you want your password to be?");
 
@@ -16,6 +29,7 @@ function generatePassword() {
     return;
   }
 
+  // prompts for user to decide what character types their password includes
   var userWantsNumbers = window.confirm("Would you like to include numbers in your password?");
   var userWantsSymbols = window.confirm("Would you like to include symbols in your password?");
   var userWantsLowercase = window.confirm("Would you like to include lowercase letters in your password?");
@@ -45,6 +59,21 @@ function generatePassword() {
   if (userWantsUppercase === true) {
     optionsCart.push(uppercaseList);
   }
+
+  // defaults to lowercase password if no options were chosen
+  if (optionsCart.length === 0) {
+    optionsCart.push[lowercaseList];
+  }
+
+  var generatedPassword = "";
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randomList = getRandomItem(optionsCart);
+    var randomChar = getRandomItem(randomList);
+    generatedPassword += randomChar;
+  }
+
+  return generatedPassword;
 
 
 }
